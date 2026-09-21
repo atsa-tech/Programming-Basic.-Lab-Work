@@ -134,21 +134,21 @@ $\color{red}{\text{bool}}$ выводит $\color{purple}{\text{True}}$ для �
       
 3. Путь программы
   ```mermaid
-  graph LR
-    subgraph A [Исходный файл]
+  graph TD
+    subgraph Step1 [Исходный файл]
         A["sum_sec = test_sec * test_cnt"]
     end
 
-    subgraph B [Разбор текста]
+    subgraph Step2 [Разбор текста]
         B["Разбиение на токены:<br>• Имя: 'sum_sec'<br>• Оператор: '='<br>• Имя: 'test_sec'<br>• Оператор: '*'<br>• Имя: 'test_cnt'"]
     end
 
-    subgraph C [AST]
-        C["Присваивание (=)"]
-        C1["Имя ('sum_sec')"]
-        C2["Бинарная операция (*)"]
-        C2_L["Имя ('test_sec')"]
-        C2_R["Имя ('test_cnt')"]
+    subgraph Step3 [AST]
+        C["Узел: Присваивание (=)"]
+        C1["Левая ветвь:<br>Имя ('sum_sec')"]
+        C2["Правая ветвь:<br>Бинарная операция (*)"]
+        C2_L["Левый операнд:<br>Имя ('test_sec')"]
+        C2_R["Правый операнд:<br>Имя ('test_cnt')"]
         
         C --> C1
         C --> C2
@@ -156,18 +156,19 @@ $\color{red}{\text{bool}}$ выводит $\color{purple}{\text{True}}$ для �
         C2 --> C2_R
     end
 
-    subgraph D [4. Байткод]
+    subgraph Step4 [Байткод]
         D["Инструкции для CPython:<br>1. LOAD_NAME (test_sec)<br>2. LOAD_NAME (test_cnt)<br>3. BINARY_OP (*)<br>4. STORE_NAME (sum_sec)"]
     end
 
-    subgraph E [5. Виртуальная машина CPython]
+    subgraph Step5 [CPython]
         E["Выполнение инструкций в памяти<br>и вывод результата на экран"]
     end
 
-    A --> B
-    B --> C
-    C2_R --> D
-    D --> E
+    A -->|"Парсер читает символы"| B
+    B -->|"Проверка грамматики"| C
+    C2_R -->|"Компилятор транслирует дерево"| D
+    D -->|"Интерпретатор выполняет"| E
+
   ```
 
 4. Потому что  $\color{purple}{\text{input()}}$ по умолчанию создает строку, а мы не можем работать со строками как с объектами других типов. 
