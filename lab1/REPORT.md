@@ -12,10 +12,10 @@ print()
 
 ### Часть 2
 
-Инструкции: *course = "Python"*, _hours = 4 * 2_, _print(f"{course}: {hours} часов")_
-Выражения: _Python_, _4 * 2_, все что в f-строке
-Литералы: _4_, _2_, _часов_
-Создаваемые имена: _course_, _hours_
+Инструкции: *course = "Python"*, _hours = 4 * 2_, _print(f"{course}: {hours} часов")_  
+Выражения: _Python_, _4 * 2_, все что в f-строке  
+Литералы: _4_, _2_, _часов_  
+Создаваемые имена: _course_, _hours_  
 
 ![](https://i.postimg.cc/KvRfH3zM/Snimok-ekrana-2026-09-17-162528.png)
 
