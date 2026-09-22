@@ -28,7 +28,53 @@ print()
 
 ### Часть 3
 
-##### Версия Python 3.10.16
+``` cmd
+PS C:\Users\0\lab_01> python --version
+Python 3.12.7
+Module(  
+   body=[  
+      Expr(
+         value=Call(  
+            func=Name(id='print', ctx=Load()),  
+            args=[  
+               BinOp(  
+                  left=Constant(value=2),  
+                  op=Add(),  
+                  right=BinOp(  
+                     left=Constant(value=3),  
+                     op=Mult(),  
+                     right=Constant(value=4)))],  
+            keywords=[])),  
+      Assign(  
+         targets=[  
+            Name(id='course', ctx=Store())],  
+         value=Constant(value='Python')),  
+      Assign(  
+         targets=[  
+            Name(id='hours', ctx=Store())],  
+         value=BinOp(  
+            left=Constant(value=4),  
+            op=Mult(),  
+            right=Constant(value=2))),  
+      Expr(  
+         value=Call(  
+            func=Name(id='print', ctx=Load()),  
+            args=[  
+               JoinedStr(  
+                  values=[  
+                     FormattedValue(  
+                        value=Name(id='course', ctx=Load()),  
+                        conversion=-1),  
+                     Constant(value=': '),  
+                     FormattedValue(  
+                        value=Name(id='hours', ctx=Load()),  
+                        conversion=-1),  
+                     Constant(value=' часов')])],  
+            keywords=[]))],  
+   type_ignores=[])  
+```
+
+##### Версия Python 3.12.7
 ##### Присваивание - Assign
 ##### Арифметика - BinOp (Add/Mult)
 ##### Вызову - call
@@ -60,8 +106,8 @@ graph TD
     end
 
     subgraph Объекты в памяти
-        obj_1[(int: 1000)]
-        obj_2[(int: 1000)]
+        obj_1[(id_1: int 1000)]
+        obj_2[(id_2: int 1000)]
     end
 
     name_a --> obj_1
