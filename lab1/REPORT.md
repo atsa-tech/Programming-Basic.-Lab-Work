@@ -28,6 +28,7 @@ print()
 
 ### Часть 3
 
+#### AST
 ``` cmd
 PS C:\Users\0\lab_01> python --version
 Python 3.12.7
@@ -72,6 +73,65 @@ Module(
                      Constant(value=' часов')])],  
             keywords=[]))],  
    type_ignores=[])  
+```
+
+#### Байткод
+
+``` cmd
+  0           0 RESUME                   0
+
+  2           2 PUSH_NULL
+              4 LOAD_NAME                0 (print)
+              6 LOAD_CONST               0 (14)
+              8 CALL                     1
+             16 POP_TOP
+
+  4          18 LOAD_CONST               1 ('Python')
+             20 STORE_NAME               1 (course)
+
+  5          22 LOAD_CONST               2 (8)
+             24 STORE_NAME               2 (hours)
+
+  6          26 PUSH_NULL
+             28 LOAD_NAME                0 (print)
+             30 LOAD_NAME                1 (course)
+             32 FORMAT_VALUE             0
+             34 LOAD_CONST               3 (': ')
+             36 LOAD_NAME                2 (hours)
+             38 FORMAT_VALUE             0
+             40 LOAD_CONST               4 (' часов')
+             42 BUILD_STRING             4
+             44 CALL                     1
+             52 POP_TOP
+             54 RETURN_CONST             5 (None)
+PS C:\Users\0\lab_01> python -m dis task_1.py
+  0           0 RESUME                   0
+
+  2           2 PUSH_NULL
+              4 LOAD_NAME                0 (print)
+              6 LOAD_CONST               0 (14)
+              8 CALL                     1
+             16 POP_TOP
+
+  4          18 LOAD_CONST               1 ('Python')
+             20 STORE_NAME               1 (course)
+
+  5          22 LOAD_CONST               2 (8)
+             24 STORE_NAME               2 (hours)
+
+  6          26 PUSH_NULL
+             28 LOAD_NAME                0 (print)
+             30 LOAD_NAME                1 (course)
+             32 FORMAT_VALUE             0
+             34 LOAD_CONST               3 (': ')
+             36 LOAD_NAME                2 (hours)
+             38 FORMAT_VALUE             0
+             40 LOAD_CONST               4 (' часов')
+             42 BUILD_STRING             4
+             44 CALL                     1
+             52 POP_TOP
+             54 RETURN_CONST             5 (None)
+
 ```
 
 ##### Версия Python 3.12.7
@@ -129,7 +189,7 @@ graph TD
     - True
     - False
 
-Строчка $\color{purple}{\text{python}}$ ушла в словарь интернированных слов для оптимизации,  
+Строчка $\color{purple}{\text{python}}$ ушла в словарь интернированных слов для оптимизации (Constant Folding),  
 поэтому обе переменные ссылаются на одну интернированную строку.
 
 ##### Я этого не знал, отсюда и расхождение в прогнозе по коду и реальному выводу.
@@ -183,7 +243,7 @@ $\color{red}{\text{bool}}$ возвращает+ $\color{purple}{\text{True}}$ �
 
 ## Контрольные вопросы
 
-1. Только если делить их через _/_ (либо //  если хотя бы один операнд типа $\color{red}{\text{float}}$), потому что эта функция для максимально точного деления, что и обеспечивает плавающая точка.
+1. Только если делить их через _/_ (либо //  если хотя бы один операнд типа $\color{red}{\text{float}}$), потому что этот оператор нужен для максимально точного деления, что и обеспечивает плавающая точка.
 2. $\color{purple}{\text{int("42")}}$ преобразует строку в число, а $\color{purple}{\text{int(42.9)}}$ берет целую часть от числа типа $\color{red}{\text{float}}$
 3. Только $\color{red}{\text{bool(0)}}$ (0 в любом виде) и $\color{red}{\text{bool("")}}$
 
